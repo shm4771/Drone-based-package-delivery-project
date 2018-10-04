@@ -5,10 +5,16 @@
 using namespace std;
 
 
+int nodes = 5;
+//int set[nodes] = {0,1,2,3};      //set which is container of all child ids of 0th node
+int set[nodes] = {0,1,2,3,4};
+
 //Test data ---hardcoded
-int cost[4][4] = {{0,4,1,3},{4,0,2,1},{1,2,0,5},{3,1,5,0}};
-//int cost[5][5] = {{0,4,3,1,8},{4,0,2,2,4},{3,2,0,3,2},{1,2,3,0,2},{8,4,2,2,0}};
-int map[4][4][4];
+//int cost[4][4] = {{0,4,1,3},{4,0,2,1},{1,2,0,5},{3,1,5,0}};
+int cost[nodes][nodes] = {{0,4,3,1,8},{4,0,2,2,4},{3,2,0,3,2},{1,2,3,0,2},{8,4,2,2,0}};
+//int map[4][4][4];
+int map[nodes][nodes][nodes]; //nodes, parenIDm self
+
 
 
 //function to remove an elemnt from array and return modified array
@@ -94,19 +100,18 @@ int minSum(int parentId, int nodeIndex, int size, int array[])
 
 int main()
 {
-    int set[4] = {0,1,2,3};      //set which is container of all child ids of 0th node
-    //int set[5] = {0,1,2,3,4};
+
     int sum;
-    int *newArray = removeData(4, set, 0);
+    int *newArray = removeData(nodes, set, 0);
 
     //function args - parent id, self id, size of set, set
-    sum = minSum(0, 0, 3, newArray);
+    sum = minSum(0, 0, nodes-1, newArray);
     cout << "optimum total cost is: "<<sum << endl;
 
     int path[5];  //array for storing the optimal path
     int parentId=0;
     int selfId=0;
-    int size=3;
+    int size = nodes-1;
 /*
     for(int i=0;i<4;i++)
     {
@@ -121,9 +126,9 @@ int main()
 */
     // displaying the optimal path
     cout << "The chosen path will be: ";
-    for(int i=0;i<5;i++)
+    for(int i=0;i<nodes+1;i++)
     {
-        path[i] = map[size][parentId][selfId];
+        path[i] = map[size][parentId][selfId];  
         size --;
         parentId = selfId;
         selfId = path[i];
