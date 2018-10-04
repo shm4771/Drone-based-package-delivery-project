@@ -5,7 +5,7 @@
 using namespace std;
 
 
-int nodes = 5;
+const int nodes = 5;
 //int set[nodes] = {0,1,2,3};      //set which is container of all child ids of 0th node
 int set[nodes] = {0,1,2,3,4};
 
