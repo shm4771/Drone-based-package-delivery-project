@@ -10,9 +10,9 @@ const int nodes = 5;
 int set[nodes] = {0,1,2,3,4};
 
 //Test data ---hardcoded
-//int cost[4][4] = {{0,4,1,3},{4,0,2,1},{1,2,0,5},{3,1,5,0}};
+//int cost[nodes][nodes] = {{0,4,1,3},{4,0,2,1},{1,2,0,5},{3,1,5,0}};
 int cost[nodes][nodes] = {{0,4,3,1,8},{4,0,2,2,4},{3,2,0,3,2},{1,2,3,0,2},{8,4,2,2,0}};
-//int map[4][4][4];
+//int map[nodes][nodes][nodes];
 int map[nodes][nodes][nodes]; //nodes, parenIDm self
 
 
@@ -33,7 +33,7 @@ int *removeData(int size, int array[], int element)
         else if(element != array[i] && isRemoved == 1)
         {
             Newarray[i-1] = array[i];
-            //cout << Newarray[i-1] << ",";
+            //cout << Newarray[i-1] << ",";o
         }
         else
         {
@@ -108,7 +108,7 @@ int main()
     sum = minSum(0, 0, nodes-1, newArray);
     cout << "optimum total cost is: "<<sum << endl;
 
-    int path[5];  //array for storing the optimal path
+    int path[nodes+1];  //array for storing the optimal path
     int parentId=0;
     int selfId=0;
     int size = nodes-1;
