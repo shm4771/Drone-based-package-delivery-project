@@ -96,30 +96,30 @@ Input:
 
 
 Output:
-for k: 1 and i: 0
-route:
+	for k  1 and i  0
+	route-> 
+	depot
+	node7
+	node3
+	node5
+	depot
+	node8
 	depot
 	node10
+	depot
+	node4
 	depot
 	node9
 	node6
 	node2
 	node1
 	depot
-	node4
-	depot
-	node8
-	depot
-	node5
-	node7
-	node3
-	depot
-Drone required: 5
- cost:
-108.650089
+	Drone required  5
+	 cost 
+	108.678542
 
-for k: 2 and i: 0
-route:
+	for k  2 and i  0
+	route-> 
 	depot
 	node5
 	node7
@@ -127,56 +127,57 @@ route:
 	depot
 	node9
 	depot
-	node10
-	depot
 	node8
 	depot
-Drone required: 4
- cost:
-66.828448
-
-for k: 2 and i: 1
- route:
+	node10
 	depot
-	node1
-	node2
-	node6
+	Drone required  4
+	 ost 
+	66.828448
+
+	for k  2 and i  1
+	 route-> 
 	depot
 	node4
 	depot
-Drone required: 2
- cost:
-47.712065
-Feasible Cost: 108.65008881534357
+	node6
+	node2
+	node1
+	depot
+	Drone required  2
+	 cost 
+	47.712065
+	Feasible Cost  108.6785421892098
 
- Printing the optimla path in terms of node
- route: 0
+	 Printing the optimla path in terms of node
+	route-> 0
+	depot
+	node7
+	node3
+	node5
+	depot
+	 route-> 1
+	depot
+	node8
+	depot
+	 route-> 2
 	depot
 	node10
 	depot
- route: 1
+	 route-> 3
+	depot
+	node4
+	depot
+	 route-> 4
 	depot
 	node9
 	node6
 	node2
 	node1
-depot
- route: 2
 	depot
-	node4
-	depot
- route: 3
-	depot
-	node8
-	depot
- route: 4
-	depot
-	node5
-	node7
-	node3
-	depot
-count 5
-Welcome to animation paer
+	count 5
+Welcome to animation part
+
 
 ##Results
 Thank You

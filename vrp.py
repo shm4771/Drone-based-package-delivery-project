@@ -212,8 +212,8 @@ def GetSoln(VRP, MaxDrones, Kmax):
 			##printing the solution
 
 
-			print('for k:',k,'and i:',i)
-			print(' route:')
+			print('for k ',k,'and i ',i)
+			print(' route-> ')
 			print('depot')
 			count = 1
 			if(temp_better[0] == 0):
@@ -229,12 +229,12 @@ def GetSoln(VRP, MaxDrones, Kmax):
 					count += 1
 
 			print('depot')
-			print("Drone required:", count)
+			print("Drone required ", count)
 			drone_sum += count
 			total_temp += temp_bf
 			temp_clusters.append(vrp)
 			path_solns.append(temp_better)
-			print(' cost:')
+			print(' cost ')
 			print ('%f' % temp_bf)
 		
 		Paths.append(path_solns)
@@ -262,7 +262,7 @@ def GetSoln(VRP, MaxDrones, Kmax):
 			OptimumDistance = Distances[i]
 			SolIndex = i
 
-	print("Feasible Cost:", OptimumDistance)
+	print("Feasible Cost ", OptimumDistance)
 	#print("Feasible Sol Index", index)
 
 
@@ -274,7 +274,7 @@ def GetSoln(VRP, MaxDrones, Kmax):
 
 	for i in range(Feasible_k_value):
 		cluster_paths = []
-		print(' route:', TotalRouts)
+		print(' route->', TotalRouts)
 		m = 0
 		print('depot')
 		count = 1
@@ -289,7 +289,7 @@ def GetSoln(VRP, MaxDrones, Kmax):
 			path.append(point)
 
 			if(Clusters[index][i]['nodes'][nodeIdx]['label'] == 'depot'):
-				print(' route:', count+TotalRouts)
+				print(' route->', count+TotalRouts)
 				cluster_paths.append(path)
 				path = []
 				path.append([0,0])
