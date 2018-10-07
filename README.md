@@ -178,6 +178,7 @@ Output:
 	count 5
 Welcome to animation part
 
+![](drone_path.gif)
 
 ##Results
 Thank You
