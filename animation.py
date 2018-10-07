@@ -71,9 +71,8 @@ def main(speed, means, clusters, Solution):
 
   
   ##Variables and animation calls
-  print("Welcome to animation paer")
+  print("Welcome to animation part")
   Feasible_k_value = len(means)
-  print("Feasible_k_value",Feasible_k_value)
 
   X = []
   for i in range(Feasible_k_value):
@@ -81,7 +80,6 @@ def main(speed, means, clusters, Solution):
       for k in range(len(Solution[i][j])):
         X.append([Solution[i][j][k][0], Solution[i][j][k][1]])
 
-  print("X", X)
   X_store = []
   Y_store = []
   X_store.append(0)

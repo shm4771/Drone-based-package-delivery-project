@@ -1,36 +1,37 @@
-# A genetic algorithm for solving the Vehicle Routing Problem
+##Course project "Cost Optimisation for a package delivery drone" in course EN618(Modeling and analysis of energy systems) 
 
+# A genetic algorithm for solving the Vehicle Routing Problem
 This is a command-line interface program written in Python language for solving the VPR, minimizing the costs of it's routes.
 
-## Input data format
+
+There are 4 major files -
+1. vrp.py -- It's the main file of program which invokes other files imported in it
+2. k_mean.py -- This file implement k_mean algorithms for 10000 fixed maximum iterations
+3. k_mean_plot.py -- This file is used to plot clusters and data point obtained from k_mean
+4. animation.py -- This file takes optimal sol and the optimal k value and animate the path of drones
+
+
+
+## Input data (xls format)
 	# This is a comment line
-	
-	params:
-	  [param-name] [param-value]
-	  ...
-	
+	  ...	
 	nodes:
-	  [node-label] [demand-value] [position-x] [position-y]
+	  [node-name] [demand-value] [position-x] [position-y]
 	  ...
 
 Lines started with ```#``` are comments, then ignored by the program.
 
-All the strings of the input are case-sensitive, except the labels ```params:``` and ```nodes:``` that are case-insensitive.
+All the strings of the input are case-sensitive
 
-### Params
 
-In ```params:``` block, it's defined the params for the VRP.
-
-The unique and required accepted param is ```capacity```, that is a decimal positive number representing the capacity of the vehicle.
 
 ### Nodes
-
 In ```nodes:``` block, it's defined the nodes of the VRP.
 
-1. ```[node-label]``` is a label, terminated by a whitespace, to indentify that node;
-2. ```[demand-value]``` is a decimal positive number that defines the demand value of the node;
-3. ```[position-x]``` is the signed decimal value of the x-axis position in space of the node;
-4. ```[position-y]``` is the signed decimal value of the y-axis position in space of the node.
+1. ```[node-name]``` --name of the node;
+2. ```[demand-value]``` the demand at the specify node;
+3. ```[position-x]``` x coordinate of the node;
+4. ```[position-y]``` y coordinate of the node.
 
 The node of the depot is implicitly pré-defined, with ```depot``` label, demand ```0``` and position xy ```(0, 0)```.
 
@@ -55,10 +56,11 @@ The formula below is the calculation of the distance between the nodes A and B:
 
 In ```route:``` block, each line is the label of the visited node, in sequence.
 
+
 ## Running the program
 
 ```bash
-python vrp.py [population-size] [number-of-iterations] < input-file.txt
+python vrp.py [population-size] [number-of-iterations] input-file.xls [Maximum-available-Drones] [Maximum-number-of-clusters] [speed-param-to-control-animation-speed]
 ```
 
 Required params:
@@ -66,122 +68,115 @@ Required params:
 1. ```[population-size]``` is an integer positive number that specifies the number of individuals of each generation in the genetic algorithm;
 2. ```[number-of-iterations]``` is an integer positive number that specifies the number of iterations (population generations) of the genetic algorithm.
 
-Replace ```input-file.txt``` by the file from you want to read the input
+Replace ```input-file.xls``` by the file from you want to read the input
+
+3. '''[Maximum-available-Drones]''' is an integer value specifies the maximum available drones of capacity 10
+4. '''[Maximum-number-of-clusters]''' is the an integer value specifies the maximum clusters we want to make
+5. '''[speed-param-to-control-animation-speed]''' is the integer value to control interval inside the animation. give value in range 100 to 10000
 
 ### Example
 
 Command to run:
 ```bash
-python vrp.py 50 100 < in.txt
+python3 vrp.py 100 300 data-2.xls 20 3 800
 ```
 
 Input:
 
-	# This is an example of data input
-	
-	params:
-	  capacity 5
-	
-	nodes:
-	  n1	2.3		-5	  7
-	  n2	1.6		0	  -10.1
-	  n3    0.98    -10   9
-	  n4    1.1     5.78  0
-	  n5    4.0     -5.78  0
-	  n6    2.2     5.78  1.1
-	  n7    1.1     5.78  -1.1
-	  n8    0.1     0.1   0
-	  n9    0.1     -0.1  0
+     node1	0.331	-6.238	-9.76
+     node2	4.239	2.141	-11.34
+     node3	4.048	1.675	10.392
+     node4	8.926	4.872	-1.665
+     node5	1.346	0.407	4.963
+     node6	2.588	7.111	-3.269
+     node7	3.915	1.035	11.662
+     node8	8.971	0.67	2.12
+     node9	2.781	5.987	12.363
+     node10	7.322	0.751	5.576
+
 
 Output:
-
-	 route:
+for k: 1 and i: 0
+route:
 	depot
-	n5
-	n9
-	depot
-	n2
-	n3
-	n1
-	depot
-	n7
-	n4
-	n6
-	n8
-	depot
-	 cost:
-	71.176217
-
-## Random input generator
-
-This project also has an input VRP random sample generator.
-
-```bash
-python vrp-sample-gen.py [nodes-count] [capacity] [min-x] [max-x] [min-y] [max-y] > my-generated-vrp-input.txt
-```
-
-The program generates a formatted VRP input, with ```[nodes-count]``` nodes (not including the depot). With the capacity ```[capacity]```. Each node is choosen a random demand between ```0.0``` and ```[capacity]```; a random x-axis position between ```[min-x]``` and ```[max-x]```; and a random y-axis position between ```[min-y]``` and ```[max-y]```.
-
-### Example
-
-Command to run:
-```bash
-python vrp-sample-gen.py 10 45.89 -9.1 10 -7.63 8.05
-```
-
-Output:
-
-	params:
-	  capacity 45.890000
-	nodes:
-	  node01		17.511		9.194		1.066
-	  node02		12.335		1.134		-1.621
-	  node03		16.793		-6.862		-6.416
-	  node04		18.821		-6.452		-2.332
-	  node05		3.103		-5.402		-4.644
-	  node06		39.410		6.795		-4.982
-	  node07		33.389		6.707		0.483
-	  node08		45.697		-7.255		4.209
-	  node09		19.172		3.970		3.618
-	  node10		4.366		-2.550		2.892
-
-### Piping the generated input to the VRP program
-
-You also can run the sample input generator then pass it directly to the VRP program to run.
-
-```bash
-python vrp-sample-gen.py [params...] | python vrp.py [params...]
-```
-
-Example:
-```bash
-python vrp-sample-gen.py 10 45.89 -9.1 10 -7.63 8.05 | python vrp.py 40 100
-```
-Output:
-
-	 route:
-	depot
-	node06
-	node05
-	depot
-	node07
-	depot
-	node02
-	depot
-	node01
-	depot
-	node03
-	depot
-	node08
-	depot
-	node04
-	depot
-	node09
 	node10
 	depot
-	 cost:
-	112.169544
+	node9
+	node6
+	node2
+	node1
+	depot
+	node4
+	depot
+	node8
+	depot
+	node5
+	node7
+	node3
+	depot
+Drone required: 5
+ cost:
+108.650089
 
-## Glossary
+for k: 2 and i: 0
+route:
+	depot
+	node5
+	node7
+	node3
+	depot
+	node9
+	depot
+	node10
+	depot
+	node8
+	depot
+Drone required: 4
+ cost:
+66.828448
 
-**VRP** - Vehicle Routing Problem
+for k: 2 and i: 1
+ route:
+	depot
+	node1
+	node2
+	node6
+	depot
+	node4
+	depot
+Drone required: 2
+ cost:
+47.712065
+Feasible Cost: 108.65008881534357
+
+ Printing the optimla path in terms of node
+ route: 0
+	depot
+	node10
+	depot
+ route: 1
+	depot
+	node9
+	node6
+	node2
+	node1
+depot
+ route: 2
+	depot
+	node4
+	depot
+ route: 3
+	depot
+	node8
+	depot
+ route: 4
+	depot
+	node5
+	node7
+	node3
+	depot
+count 5
+Welcome to animation paer
+
+##Results
+Thank You

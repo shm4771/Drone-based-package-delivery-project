@@ -245,9 +245,6 @@ def GetSoln(VRP, MaxDrones, Kmax):
 		#print(total_temp)
 
 	index = Distances.index(min(Distances))
-	print(index)
-	print(TotalDrones)
-	print(Distances)
 
 
 	feasibleSolIndex = []
@@ -266,11 +263,12 @@ def GetSoln(VRP, MaxDrones, Kmax):
 			SolIndex = i
 
 	print("Feasible Cost:", OptimumDistance)
-	print("Feasible Sol Index", index)
+	#print("Feasible Sol Index", index)
 
 
 	##printing optimal solution
-	print(Paths[index])
+	#print(Paths[index])
+	print("\n Printing the optimla path in terms of node")
 	Feasible_k_value = len(Clusters[index])
 	TotalRouts = 0
 
@@ -324,8 +322,8 @@ def main():
 	Feasible_k_value, TotalDrones, OptimumDistance, Solution = GetSoln(VRP, MaxDrones, Kmax)
 	#ShowAnimation(Solution)
 
-	print(Solution)
-
+	'''
+	Print ("Printing the optimal path in terms of Coordinates")
 	for i in range(Feasible_k_value):
 		print("Cluster Id:", i+1)
 		for j in range(len(Solution[i])):
@@ -333,6 +331,7 @@ def main():
 			for k in range(len(Solution[i][j])):
 				print(Solution[i][j][k][0], Solution[i][j][k][1])
 				print("->")
+	'''
 
 	means = km.CalculateMeans(Feasible_k_value, Grid)
 
