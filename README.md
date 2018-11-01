@@ -179,7 +179,6 @@ Output:
 Welcome to animation part
 
 ##Animation
-
-    ![](drone_path.gif)
+![](drone_path.gif)
 
 Thank You
