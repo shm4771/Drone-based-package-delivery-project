@@ -25,7 +25,7 @@ def CalculateBatteryWeight(Soln, VRP):
 	payload = sum(path_demand)
 	for i in range(len(path_demand)-1):
 		distance = 1000* km.EuclideanDistance(Soln[i], Soln[i+1]) ##convert into meter
-		print("payload is: ", payload - path_demand[i])
+		#print("payload is: ", payload - path_demand[i])
 		amp_rating += dm.AmpRate(payload - path_demand[i], distance)
 
 	battery_weight = dm.BatWeight(amp_rating)
@@ -241,9 +241,9 @@ def GetSoln(VRP, MaxDrones, Kmax):
 			temp_better, temp_bf = SolveGenetic(vrp)
 
 			##printing the solution
-			print('for k ',k,'and i ',i)
-			print(' route-> ')
-			print('depot')
+			#print('for k ',k,'and i ',i)
+			#print(' route-> ')
+			#print('depot')
 			count = 1
 			if(temp_better[0] == 0):
 				temp_better.remove(0)
@@ -253,18 +253,18 @@ def GetSoln(VRP, MaxDrones, Kmax):
 				temp_better.pop(last_index)
 
 			for nodeIdx in temp_better:
-				print (vrp['nodes'][nodeIdx]['label'])
+				#print (vrp['nodes'][nodeIdx]['label'])
 				if(vrp['nodes'][nodeIdx]['label'] == 'depot'):
 					count += 1
 
-			print('depot')
-			print("Drone required ", count)
+			#print('depot')
+			#print("Drone required ", count)
 			drone_sum += count
 			total_temp += temp_bf
 			temp_clusters.append(vrp)
 			path_solns.append(temp_better)
-			print(' cost ')
-			print ('%f' % temp_bf)
+			#print(' cost ')
+			#print ('%f' % temp_bf)
 		
 		Paths.append(path_solns)
 		Clusters.append(temp_clusters)
@@ -290,46 +290,46 @@ def GetSoln(VRP, MaxDrones, Kmax):
 			OptimumDistance = Distances[i]
 			SolIndex = i
 
-	print("Feasible Cost ", OptimumDistance)
+	#print("Feasible Cost ", OptimumDistance)
 	#print("Feasible Sol Index", index)
 
 
 	##printing optimal solution
 	#print(Paths[index])
-	print("\n Printing the optimal path in terms of node")
+	#print("\n Printing the optimal path in terms of node")
 	Feasible_k_value = len(Clusters[index])
 	TotalRouts = 0
 
 	for i in range(Feasible_k_value):
 		cluster_paths = []
-		print(' route->', TotalRouts)
+		#print(' route->', TotalRouts)
 		m = 0
-		print('depot')
+		#print('depot')
 		count = 1
 		path = []
 		path.append([0,0])
 
 		for nodeIdx in Paths[index][i]:
 			point = []
-			print (Clusters[index][i]['nodes'][nodeIdx]['label'])
+			#print (Clusters[index][i]['nodes'][nodeIdx]['label'])
 			point.append(Clusters[index][i]['nodes'][nodeIdx]['posX'])
 			point.append(Clusters[index][i]['nodes'][nodeIdx]['posY'])
 			path.append(point)
 
 			if(Clusters[index][i]['nodes'][nodeIdx]['label'] == 'depot'):
-				print(' route->', count+TotalRouts)
+				#print(' route->', count+TotalRouts)
 				cluster_paths.append(path)
 				path = []
 				path.append([0,0])
 				count += 1			
-				print('depot')
+				#print('depot')
 
 		path.append([0,0])
 		cluster_paths.append(path)
 		Solution.append(cluster_paths)
 
-		print('depot')
-		print('count', count)
+		#print('depot')
+		#print('count', count)
 		TotalRouts += count
 
 	#print(Solution)
@@ -348,14 +348,15 @@ def main():
 	speed = int(sys.argv[6]) #speed to controla animated result
 
 	Feasible_k_value, TotalDrones, OptimumDistance, Solution = GetSoln(VRP, MaxDrones, Kmax)
-	print(Solution)
+	#print(Solution)
 	print("Feasible k value ", Feasible_k_value)
 	
 	# finding cost using drone model
 	#Print ("Printing the optimal path in terms of Coordinates")
-	'''
 	battery_array = []
+
 	for i in range(Feasible_k_value):
+		print(len(Solution[i]))
 		print("Cluster Id:", i+1)
 		for j in range(len(Solution[i])):
 			print("path:", j+i+1) 
@@ -364,7 +365,6 @@ def main():
 			for k in range(len(Solution[i][j])):
 				print(Solution[i][j][k][0], Solution[i][j][k][1])
 				print("->")
-	'''
 
 	means = km.CalculateMeans(Feasible_k_value, Grid)
 
